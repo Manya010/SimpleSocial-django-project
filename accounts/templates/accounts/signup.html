@@ -1,17 +1,14 @@
 {% extends "base.html" %}
+{% load bootstrap3 %}
 
-{# at the terminal, run pip install django-bootstrap4 #}
-{% load bootstrap4 %}
 
 {% block content %}
 <div class="container">
-  <h1>Sign Up</h1>
-  <form method="POST" class="form">
-    {% csrf_token %}
-    {% bootstrap_form form %}
-    {% buttons %}
-      <button type="submit" class="btn btn-primary">Sign Up</button>
-    {% endbuttons %}
-  </form>
+    <h1>Sign Up</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <input type="submit" value="Sign Up" class="btn btn-default">
+    </form>
 </div>
 {% endblock %}

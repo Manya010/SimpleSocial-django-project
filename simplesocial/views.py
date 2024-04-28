@@ -9,7 +9,7 @@ class ThanksPage(TemplateView):
     template_name = 'thanks.html'
 
 class HomePage(TemplateView):
-    template_name = 'index.html'
+    template_name = "index.html"
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:

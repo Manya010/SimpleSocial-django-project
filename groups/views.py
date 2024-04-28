@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import(
     LoginRequiredMixin,
     PermissionRequiredMixin
 )
+
 from django.urls import reverse
 from django.db import IntegrityError
 from django.shortcuts import get_object_or_404
@@ -47,7 +48,9 @@ class LeaveGroup(LoginRequiredMixin, generic.RedirectView):
         return reverse("groups:single",kwargs={"slug": self.kwargs.get("slug")})
 
     def get(self, request, *args, **kwargs):
+
         try:
+
             membership = models.GroupMember.objects.filter(
                 user=self.request.user,
                 group__slug=self.kwargs.get("slug")
@@ -58,7 +61,6 @@ class LeaveGroup(LoginRequiredMixin, generic.RedirectView):
                 self.request,
                 "You can't leave this group because you aren't in it."
             )
-
         else:
             membership.delete()
             messages.success(
